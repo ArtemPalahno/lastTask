@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style/style1.css">
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["email"].value;
+            var atpos = x.indexOf("@");
+            var dotpos = x.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+                alert("Not a valid e-mail address");
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<form action="Register" method = "POST" name="myform" onsubmit="return validateemail();">
+    <div class="imgcontainer">
+        <img src="image/photo.jpg" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+        <label><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="uName" required>
+        <label><b>Surname</b></label>
+        <input type="text" placeholder="Enter Surname" name="uSurname" required>
+        <label><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="uEmail" required>
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <button type="submit">Register</button>
+       </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="cancelbtn">Cancel</button>
+     </div>
+</form>
+
+</body>
+</html>

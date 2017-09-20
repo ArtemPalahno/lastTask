@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style/style1.css">
+</head>
+<body>
+<form  method = "POST" action="j_security_check" name="myform">
+    <div class="imgcontainer">
+        <img src="image/img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+        <label><b>Email</b></label>
+        <input type="text" placeholder="Enter Username" name="email" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <button type="submit">Sign In</button>
+        <input type="checkbox" checked="checked" value="OK" name="rememberMe"> Remember me
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="cancelbtn"  onclick="location.href='signUp.html'">SIGN UP</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+</form>
+<script>
+    function validateemail()
+    {
+        var x=document.myform.email.value;
+        var atposition=x.indexOf("@");
+        var dotposition=x.lastIndexOf(".");
+        if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){
+            alert("Please enter a valid e-mail address \n atpostion:"+atposition+"\n dotposition:"+dotposition);
+            return false;
+        }
+    }
+    function validateform(){
+
+        var password=document.myform.psw.value;
+
+      if(password.length<6){
+            alert("Password must be at least 6 characters long.");
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
