@@ -8,8 +8,10 @@ import org.apache.log4j.PropertyConfigurator;
 
 /**
  * Created by Artem_Palagno on 18.09.2017.
+ * Listener that initialize log4j.
  */
 public class ContextListener implements ServletContextListener {
+
     private static final Logger log = Logger.getLogger(ContextListener.class);
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {

@@ -13,13 +13,20 @@ import javax.activation.*;
 
 /**
  * Created by Artem_Palagno on 19.09.2017.
+ * Class that sending email to
  */
 public class SendEmail {
-    public static boolean Send(String email){
+    /**
+     * Send password to user that forgot password
+     *
+     * @param email user's email
+     * @return true - operation finish successfully , false - opposite.
+     */
+    public static boolean Send(String email) {
         String from = "a.palagno@gmail.com";
-        User user = null ;
-        if((user = new MySqlUserDao(MySQLConnectionUtils.getMySQLConnection()).get(email))!=null){
-        final String username = "a.palagno@gmail.com";
+        User user = null;
+        if ((user = new MySqlUserDao(MySQLConnectionUtils.getMySQLConnection()).get(email)) != null) {
+            final String username = "a.palagno@gmail.com";
             final String password = "Abandon__19";
 
             Properties props = new Properties();
@@ -46,13 +53,11 @@ public class SendEmail {
 
                 Transport.send(message);
 
-                System.out.println("Done");
-
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }
-            return true ;
+            return true;
         }
-        return false ;
+        return false;
     }
 }

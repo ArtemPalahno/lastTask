@@ -48,7 +48,9 @@
         <label><b><fmt:message key="admin_Email"/></b></label>
         <input type="email" placeholder="Enter Email" name="uEmail" required>
         <label><b><fmt:message key="password"/></b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+               placeholder="Enter Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)"
+               name="psw" required>
 
         <button type="submit"><fmt:message key="sign_up"/></button>
     </div>

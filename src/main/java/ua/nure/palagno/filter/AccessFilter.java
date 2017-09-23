@@ -20,6 +20,7 @@ import java.sql.SQLException;
 
 /**
  * Created by Artem_Palagno on 09.09.2017.
+ * Access filter that store user info.
  */
 public class AccessFilter implements Filter {
     private static final String ATT_NAME_USER_NAME = "ATTRIBUTE_FOR_STORE_USER_NAME_IN_COOKIE";

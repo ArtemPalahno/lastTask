@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 /**
  * Created by palah on 03.09.2017.
+ * Util class that help close and commit connections .
  */
 public class MySQLConnectionUtils {
     public static Connection getMySQLConnection()

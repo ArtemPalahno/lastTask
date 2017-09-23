@@ -7,6 +7,7 @@
 <%@ page import="ua.nure.palagno.db.dao.classes.MySqlGroupDao" %>
 <%@ page import="ua.nure.palagno.db.connection.MySQLConnectionUtils" %>
 <%@ page import="ua.nure.palagno.db.dao.classes.MySqlSubscriptionsDao" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: palah
@@ -18,6 +19,7 @@
 <html>
 <head>
     <title>CSS Template</title>
+    <%@ taglib uri="http://palagno.com" prefix="mytags"%>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../../../style/style.css">
@@ -56,25 +58,27 @@
         </tr>
         </thead>
         <tbody>
-        <% User user = (User) session.getAttribute("user");
-            //   ArrayList<Publication> list = (ArrayList<Publication>) new MySqlSubscriptionsDao(MySQLConnectionUtils.getMySQLConnection()).
-            //         getAllPublicationsByUserID(user.getId());
-            ArrayList<Publication> list = (ArrayList<Publication>) new MySqlSubscriptionsDao(MySQLConnectionUtils.getMySQLConnection()).
-                    getAllPublicationsByUserID(user.getId());
-            if (list.isEmpty()) {
-                out.print("you don't have subscriptions  ,yet");
-            } else {
-                for (Publication pub : list) {
-                    out.print("<tr>");
-                    out.print("<td>" + new MySqlGroupDao(MySQLConnectionUtils.getMySQLConnection()).get(pub.getGroupID()) + "</td>");
-                    out.print("<td>" + pub.getBookName() + "</td>");
-                    out.print("<td>" + pub.getPrice() + "</td>");
-                    out.print("</tr>");
-                }
+        <mytags:tableView/>
+
+<%--    <% User user = (User) session.getAttribute("user");
+        //   ArrayList<Publication> list = (ArrayList<Publication>) new MySqlSubscriptionsDao(MySQLConnectionUtils.getMySQLConnection()).
+        //         getAllPublicationsByUserID(user.getId());
+        ArrayList<Publication> list = (ArrayList<Publication>) new MySqlSubscriptionsDao(MySQLConnectionUtils.getMySQLConnection()).
+                getAllPublicationsByUserID(user.getId());
+        if (list.isEmpty()) {
+            out.print("you don't have subscriptions  ,yet");
+        } else {
+            for (Publication pub : list) {
+                out.print("<tr>");
+                out.print("<td>" + new MySqlGroupDao(MySQLConnectionUtils.getMySQLConnection()).get(pub.getGroupID()) + "</td>");
+                out.print("<td>" + pub.getBookName() + "</td>");
+                out.print("<td>" + pub.getPrice() + "</td>");
+                out.print("</tr>");
             }
-        %>
-        </tbody>
-    </table>
+        }
+    %>--%>
+    </tbody>
+</table>
 
 </div>
 

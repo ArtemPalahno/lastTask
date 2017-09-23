@@ -1,20 +1,19 @@
 package ua.nure.palagno.utils;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.net.ssl.HttpsURLConnection;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 
 /**
- * Created by Artem_Palagno on 17.09.2017.
+ * Created by Artem_Palagno on 23.09.2017.
  */
 public class Verify {
-    public static final String SITE_KEY = "6Ldq9jAUAAAAALqdx9lDNhDsqrqpKKidnlurSqYu";
-    public static final String SECRET_KEY = "6Ldq9jAUAAAAAFfYEX0tEekV3KSI9d2uR9kL7yWq";
+    public static final String SECRET_KEY ="6Ldq9jAUAAAAAFfYEX0tEekV3KSI9d2uR9kL7yWq";
+
     public static final String SITE_VERIFY_URL = //
             "https://www.google.com/recaptcha/api/siteverify";
 

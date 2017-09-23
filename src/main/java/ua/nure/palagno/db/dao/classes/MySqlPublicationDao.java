@@ -17,17 +17,46 @@ import java.util.List;
 public class MySqlPublicationDao implements PublicationDao {
     private static final Logger log = Logger.getLogger(MySqlPublicationDao.class);
     private Connection con;
-
+    /**
+     * Sql query that read all publications from db.
+     */
     private static final String SQL__GET_ALL_PUBLICATIONS = "SELECT * FROM publications";
+    /**
+     * Sql query that get publication by name .
+     */
     private static final String SQL__FOUND_BY_NAME = "SELECT * FROM publications where Name=?";
+    /**
+     * Sql query that get publication by ID.
+     */
     private static final String SQL__GET_PUBLICATION_BY_ID = "SELECT * FROM publications where id=?";
+    /**
+     * Sql query that insert into db new publication .
+     */
     private static final String SQL__CREATE_PUBLICATION = "INSERT INTO publications (Name, Price, GroupID) " +
             "VALUES(?, ?, ?)";
+    /**
+     * Sql query that delete publication by ID.
+     */
     private static final String SQL__DELETE_PUBLICATION_BY_ID = "DELETE FROM publications where id=? ";
+    /**
+     * Sql query that update publication by ID.
+     */
     private static final String SQL__UPDATE_PUBLICATION = "UPDATE publications SET Name=?, Price=?, GroupID=? where id=?";
+    /**
+     * Sql query that get all publication in order by Name .
+     */
     private static final String SQL__GET_ALL_BY_NAME = "SELECT * FROM publications ORDER BY Name";
+    /**
+     * Sql query that get all publication in order by Price.
+     */
     private static final String SQL__GET_ALL_BY_Price = "SELECT * FROM publications ORDER BY Price";
+    /**
+     * Sql query that get all publication by Group.
+     */
     private static final String SQL__GET_BY_GROUP = "SELECT * FROM publications where GroupID=?";
+    /**
+     * Sql query that get all user's publications .
+     */
     private static final String SQL__GET_ALL_BY_USER_ID = "Select * from publications where ID IN (select bookID from subscription where userID=?)";
 
     public MySqlPublicationDao(Connection con) {

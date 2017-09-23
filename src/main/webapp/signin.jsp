@@ -1,5 +1,3 @@
-
-<%@ page import="ua.nure.palagno.facebook.CreateFBConnection" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
@@ -16,43 +14,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+
     <!-- reCAPTCHA with Auto language -->
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id"
-          content="250566326923-vvh3009tvpb434tunjcermkd6djk0778.apps.googleusercontent.com">
+
     <link rel="stylesheet" type="text/css" href="style/style1.css">
 </head>
 <body>
-<script>
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        console.log('id_token: ' + googleUser.getAuthResponse().id_token);
 
-        //do not post above info to the server because that is not safe.
-        //just send the id_token
 
-        var redirectUrl = 'fb';
-        //using jquery to post data dynamically
-        var form = $('<form action="' + redirectUrl + '" method="post">' +
-            '<input type="text" name="id_token" value="' +
-            googleUser.getAuthResponse().id_token + '" />' +
-            '</form>');
-        $('body').append(form);
-        form.submit();
-    }
-
-</script>
-
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="res" />
-<form  method = "POST" action="/Login" name="myform">
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="res"/>
+<form method="POST" action="/Login" name="myform">
 
     <div class="imgcontainer">
         <img src="image/img_avatar2.png" alt="Avatar" class="avatar">
@@ -61,10 +37,11 @@
     <div class="container">
 
         <label><b><fmt:message key="admin_Email"/></b></label>
-        <input type="text" placeholder="Enter Username" name="email" required>
+        <input type="text" placeholder="Enter Email" name="email" required>
 
         <label><b><fmt:message key="password"/></b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+               placeholder="Enter Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)" name="psw" required>
         <div class="g-recaptcha"
              data-sitekey="6Ldq9jAUAAAAALqdx9lDNhDsqrqpKKidnlurSqYu"></div>
 
@@ -73,15 +50,9 @@
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn"  onclick="location.href='signUp.jsp'"><fmt:message key="sign_up"/></button>
-        <%
-            CreateFBConnection fbConnection = new CreateFBConnection();
-        %>
-        <h3>Test Facebook Authentication</h3>
-        <a href="<%=fbConnection.getFBAuthUrl()%>">Facebook Login</a>
-        <h2>Servlet OAuth example</h2>
-        <br>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <button type="button" class="cancelbtn" onclick="location.href='signUp.jsp'"><fmt:message
+                key="sign_up"/></button>
+
         <span class="psw"><a href="/forgot.jsp"><fmt:message key="forgot_password"/>?</a></span>
     </div>
 

@@ -10,22 +10,36 @@ import java.sql.SQLException;
  * Created by palah on 05.09.2017.
  */
 public interface DaoFactory {
+
     /**
-     * Возвращает подключение к базе данных
+     * @return PublicationDAO
      */
-    public Connection getConnection() throws SQLException, NamingException;
+    PublicationDao getPublicationDao();
 
-    public PublicationDao getPublicationDao(Connection connection);
+    /**
+     * @return UserDAO
+     */
+    UserDao getUserDao();
 
-    public UserDao getUserDao(Connection connection);
+    /**
+     * @return GroupDAO
+     */
+    GroupDao getGroupDao();
 
-    public GroupDao getGroupDao(Connection connection);
+    /**
+     * @return SubscriptionsDAO
+     */
+    SubscriptionsDao getSubscriptionsDao();
 
-    public SubscriptionsDao getSubscriptionsDao(Connection connection);
+    /**
+     * @return StatusDAO
+     */
+    StatusDao getStatusDao();
 
-    public StatusDao getStatusDao(Connection connection);
-
-    public RoleDao getRoleDao(Connection connection);
+    /**
+     * @return RoleDAO
+     */
+    RoleDao getRoleDao();
 
 
 }

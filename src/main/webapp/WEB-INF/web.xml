@@ -37,70 +37,62 @@
     </filter-mapping>
     <servlet>
         <servlet-name>Locale</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.LocaleServlet</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.LocaleServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditPublication</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.EditPublicationServlet</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.EditPublicationServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeletePublication</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.DeleteProduct</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.DeleteProduct</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>UserPage</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.UserPage</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.UserPage</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangeStatus</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.ChangeStatus</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.ChangeStatus</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Register</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.Register</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.Register</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminPage</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.AdminPage</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.AdminPage</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>sendEmail</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.SendingServlet</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.SendingServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>subscribePublication</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.SubscribePublication</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.SubscribePublication</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogOut</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.LogOut</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.LogOut</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreatePublication</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.CreatePublication</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.CreatePublication</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.LoginServlet</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>List</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.PublicationList</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.PublicationList</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Pay</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.Payment</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>MainMenu</servlet-name>
-        <servlet-class>ua.nure.palagno.Controllers.FBHandler</servlet-class>
+        <servlet-class>ua.nure.palagno.controllers.Payment</servlet-class>
     </servlet>
 
-    <servlet-mapping>
-        <servlet-name>MainMenu</servlet-name>
-        <url-pattern>/fbhome</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Pay</servlet-name>
         <url-pattern>/pay</url-pattern>
@@ -168,6 +160,12 @@
         <welcome-file>index.html</welcome-file>
         <welcome-file>index2.html</welcome-file>
     </welcome-file-list>
+    <jsp-config>
+        <taglib>
+            <taglib-uri>http://palagno.com</taglib-uri>
+            <taglib-location>/WEB-INF/table.tld</taglib-location>
+        </taglib>
+    </jsp-config>
     <resource-ref>
         <description>DB Connection</description>
         <res-ref-name>jdbc/lastTask</res-ref-name>

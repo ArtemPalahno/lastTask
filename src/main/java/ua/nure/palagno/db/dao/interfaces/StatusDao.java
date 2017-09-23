@@ -6,6 +6,20 @@ import ua.nure.palagno.db.entity.Status;
  * Created by palah on 05.09.2017.
  */
 public interface StatusDao {
-    public Status get(int key) ;
+    /**
+     * get Status from database
+     *
+     * @param key Role identifier
+     * @return instance of Status entity
+     */
+    Status get(int key);
+
+    /**
+     * get status ID from database by statusName
+     *
+     * @param statusName Status name in db
+     * @return status ID
+     */
+    int get(String statusName);
 
 }

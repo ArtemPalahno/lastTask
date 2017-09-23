@@ -18,8 +18,17 @@ import java.util.List;
  */
 public class MySqlSubscriptionsDao implements SubscriptionsDao {
     private static final Logger log = Logger.getLogger(MySqlSubscriptionsDao.class);
+    /**
+     * Sql query that get all user's subscriptions
+     */
     private static final String SQL__SUBSCRIPTIONS_BY_USER_ID = "select bookID from subscription where userID = ?";
+    /**
+     * Sql query that get all subscriptions by userID and publicationID.
+     */
     private static final String SQL__IS_USER_HAS_PUBLICATION = "SELECT * FROM subscription WHERE userID=? and bookID=?";
+    /**
+     * Sql query that insert user subscription.
+     */
     private static final String SQL_ADD_USER_SUB = "INSERT INTO subscription (userID, bookID) " +
             "VALUES(?, ?)";
     private Connection con;
@@ -57,7 +66,7 @@ public class MySqlSubscriptionsDao implements SubscriptionsDao {
         return list;
     }
 
-    public boolean IsUserHasBook(int userID, int bookID) {
+    public boolean IsUserHasPublication(int userID, int bookID) {
         boolean result = false ;
         PreparedStatement ps = null;
         ResultSet rs = null;

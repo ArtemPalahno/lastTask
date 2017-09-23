@@ -22,7 +22,7 @@ public class MySqlUserDao implements UserDao {
     private static final String SQL_CREATE_USER = "INSERT INTO users (Name, Surname, Email, Password , Session) " +
             "VALUES(?, ?, ?, ?, ?)";
     private static final String SQL__BLOCK_UNBLOCK_USER = "UPDATE users SET Status=? WHERE ID=?";
-     private static final String SQL__UPDATE_USER = "UPDATE users SET Money = ? WHERE ID=?";
+    private static final String SQL__UPDATE_USER = "UPDATE users SET Money = ? WHERE ID=?";
     private static final String SQL__FIND_USER_BY_ID = "SELECT  * FROM users WHERE ID=?";
     private static final String SQL__FIND_USER_BY_EMAIL = "SELECT  * FROM users WHERE Email=?";
 
@@ -42,14 +42,14 @@ public class MySqlUserDao implements UserDao {
             ps.setString(1, email);
             ps.setString(2, password);
             rs = ps.executeQuery();
-            if(rs.next()){
-            user = extractUser(rs);}
+            if (rs.next()) {
+                user = extractUser(rs);
+            }
 
         } catch (SQLException e) {
             MySQLConnectionUtils.rollbackQuietly(connection);
             log.debug("SQL exception", e);
-        }
-        finally {
+        } finally {
             try {
                 ps.close();
                 rs.close();
@@ -92,7 +92,6 @@ public class MySqlUserDao implements UserDao {
     public void create(User user) {
         int counter = 1;
         try {
-            System.out.println(5);
             PreparedStatement stmt = connection.prepareStatement(SQL_CREATE_USER);
             stmt.setString(counter++, user.getName());
             stmt.setString(counter++, user.getSurname());
@@ -101,7 +100,7 @@ public class MySqlUserDao implements UserDao {
             stmt.setString(counter, user.getSession());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(6);
+            //   System.out.println(6);
             e.printStackTrace();
         } finally {
             MySQLConnectionUtils.closeAndCommitQuietly(connection);
@@ -117,7 +116,7 @@ public class MySqlUserDao implements UserDao {
             ps = connection.prepareStatement(SQL__FIND_USER_BY_ID);
             ps.setInt(1, ID);
             rs = ps.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 user = extractUser(rs);
             }
 
@@ -136,6 +135,7 @@ public class MySqlUserDao implements UserDao {
         }
         return user;
     }
+
     public User get(String email) {
         User user = new User();
         PreparedStatement ps = null;
@@ -144,8 +144,10 @@ public class MySqlUserDao implements UserDao {
             ps = connection.prepareStatement(SQL__FIND_USER_BY_EMAIL);
             ps.setString(1, email);
             rs = ps.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 user = extractUser(rs);
+            } else {
+                return null;
             }
 
         } catch (SQLException e) {
@@ -167,21 +169,22 @@ public class MySqlUserDao implements UserDao {
     public void update(User user) {
 
     }
+
     public void updateMoney(User user) throws SQLException {
-        PreparedStatement ps = null ;
-        try{
+        PreparedStatement ps = null;
+        try {
             ps = connection.prepareStatement(SQL__UPDATE_USER);
-            ps.setDouble(1,user.getMoney());
-            ps.setDouble(2,user.getId());
+            ps.setDouble(1, user.getMoney());
+            ps.setDouble(2, user.getId());
             ps.executeUpdate();
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             MySQLConnectionUtils.rollbackQuietly(connection);
             log.debug("SQL exception", e);
-            throw e ;
+            throw e;
 
 
-        }finally {
+        } finally {
             try {
                 ps.close();
 
@@ -191,33 +194,32 @@ public class MySqlUserDao implements UserDao {
             MySQLConnectionUtils.closeAndCommitQuietly(connection);
         }
     }
-    public void delete(User user) {
 
-    }
 
     public List<User> getAll() {
         List<User> usersList = new ArrayList<>();
         Statement stmt = null;
         ResultSet rs = null;
 
-           try {
+        try {
 
             stmt = connection.createStatement();
             rs = stmt.executeQuery(SQL__GET_ALL_USERS);
-            while (rs.next()){
+            while (rs.next()) {
 
-                usersList.add(extractUser(rs));}
+                usersList.add(extractUser(rs));
+            }
         } catch (SQLException e) {
 
-               MySQLConnectionUtils.rollbackQuietly(connection);
-               log.debug("SQL exception", e);
+            MySQLConnectionUtils.rollbackQuietly(connection);
+            log.debug("SQL exception", e);
         } finally {
-               try {
-                   stmt.close();
-                   rs.close();
-               } catch (SQLException e) {
-                   e.printStackTrace();
-               }
+            try {
+                stmt.close();
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             MySQLConnectionUtils.closeAndCommitQuietly(connection);
         }
         return usersList;
@@ -246,18 +248,17 @@ public class MySqlUserDao implements UserDao {
 
     @Override
     public void changeStatus(User user) {
-        PreparedStatement stmt = null ;
+        PreparedStatement stmt = null;
         try {
 
             stmt = connection.prepareStatement(SQL__BLOCK_UNBLOCK_USER);
             Connection daoCon = MySQLConnectionUtils.getMySQLConnection();
 
             if (!user.isBlocked()) {
-               // System.out.println(new MySqlStatusDao(connection).get("blocked"));
+                // System.out.println(new MySqlStatusDao(connection).get("blocked"));
                 stmt.setInt(1, new MySqlStatusDao(daoCon).get("blocked"));
                 stmt.setInt(2, user.getId());
-            }
-             else  {
+            } else {
                 //System.out.println(new MySqlStatusDao(connection).get("valid"));
                 stmt.setInt(2, user.getId());
                 stmt.setInt(1, new MySqlStatusDao(daoCon).get("valid"));

@@ -22,6 +22,9 @@ public class MySqlRoleDao implements RoleDao {
         this.con = con;
     }
 
+    /**
+     * Sql query that get role bu ID
+     */
     private static final String SQL__GET_ROLE_BY_ID ="SELECT * FROM role where id=?";
     @Override
     public Role get(int key) {

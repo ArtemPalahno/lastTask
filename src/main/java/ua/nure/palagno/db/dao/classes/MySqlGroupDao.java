@@ -1,7 +1,6 @@
 package ua.nure.palagno.db.dao.classes;
 
 import org.apache.log4j.Logger;
-import ua.nure.palagno.Controllers.AdminPage;
 import ua.nure.palagno.db.Fields;
 import ua.nure.palagno.db.connection.MySQLConnectionUtils;
 import ua.nure.palagno.db.dao.interfaces.GroupDao;
@@ -17,11 +16,19 @@ import java.util.List;
 public class MySqlGroupDao implements GroupDao {
     private static final Logger log = Logger.getLogger(MySqlGroupDao.class);
     private Connection con;
-
+    /**
+     * SQL query which get group by id .
+     */
     private static final String SQL__GET_GROUP_BY_ID = "SELECT * FROM groups where id=?";
+    /**
+     * SQL query which get all groups.
+     */
     private static final String SQL__GET_GROUP = "SELECT * FROM groups ";
 
-
+    /**
+     *
+     * @param con initialize connection .
+     */
     public MySqlGroupDao(Connection con) {
         this.con = con;
     }
@@ -86,6 +93,11 @@ public class MySqlGroupDao implements GroupDao {
         return list;
     }
 
+    /**
+     *
+     * @param rs resultSet
+     * @return Group instance.
+     */
     private Group extractGroup(ResultSet rs) {
         Group group = new Group();
         try {
